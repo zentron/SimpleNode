@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.001" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2018-06-21T05:21:47" tests="0" failures="0" time="0">
+  </testsuite>
+  <testsuite name="AllTests()" timestamp="2018-06-21T05:21:47" tests="1" file="C:\Development\Sandbox\NodeBeanstalk\github\test.js" failures="0" time="0.001">
+    <testcase name="AllTests() should pass" time="0.001" classname="should pass">
+    </testcase>
+  </testsuite>
+</testsuites>

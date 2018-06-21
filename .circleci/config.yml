@@ -28,8 +28,6 @@ jobs:
       - run: ls /
       - persist_to_workspace:
           root: ./
-          paths:
-            - echo-output
       - save_cache:
           paths:
             - node_modules

@@ -22,6 +22,7 @@ jobs:
     <<: *defaults
     docker:
       - image: octopusdeploy/octo:4.37.0-alpine
+    working_directory: /tmp/workspace
     steps:
       - attach_workspace:
           at: /tmp/workspace

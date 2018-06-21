@@ -7,7 +7,11 @@ version: 2
 jobs:
   flow:
     <<: *defaults
+    docker:
+      - image: circleci/node:7.10
     steps:
+      - checkout
+      - npm install
       - run: mkdir -p workspace
       - run: echo "Hello, world!" > workspace/echo-output
       - persist_to_workspace:
@@ -17,10 +21,13 @@ jobs:
 
   downstream:
     <<: *defaults
+    docker:
+      - image: octopusdeploy/octo:4.37.0-alpine
     steps:
       - attach_workspace:
           at: /tmp/workspace
-
+      - run: ls ./
+      - run: ls /
       - run: |
           if [[ `cat /tmp/workspace/echo-output` == "Hello, world!" ]]; then
             echo "It worked!";

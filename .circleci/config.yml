@@ -15,7 +15,7 @@ jobs:
           when: always
       - store_test_results:
           path: ~/junit
-      - run: npm install --prune          
+      - run: npm prune --production         
       - persist_to_workspace:
           root: ./
           paths:

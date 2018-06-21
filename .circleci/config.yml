@@ -34,8 +34,6 @@ jobs:
       - image: octopusdeploy/octo:4.37.0-alpine
     working_directory: ~/repo
     steps:
-      - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:

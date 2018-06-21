@@ -7,14 +7,15 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: npm test
-      - run: 
-        command: npm install --prune
-        environment:
-          MOCHA_FILE: junit/test-results.xml
+      - run: mkdir ~/junit
+      - run:
+          command: mocha test --reporter mocha-junit-reporter
+          environment:
+            MOCHA_FILE: junit/test-results.xml
           when: always
       - store_test_results:
           path: ~/junit
+      - run: npm install --prune          
       - persist_to_workspace:
           root: ./
           paths:

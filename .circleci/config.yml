@@ -9,15 +9,14 @@ jobs:
     <<: *defaults
     docker:
       - image: circleci/node:7.10
+    working_directory: ~/repo
     steps:
       - checkout
       - run: npm install
-      - run: mkdir -p workspace
-      - run: echo "Hello, world!" > workspace/echo-output
       - persist_to_workspace:
           root: ./
           paths:
-            - echo-output
+            - ./**
 
   downstream:
     <<: *defaults

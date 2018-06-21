@@ -50,3 +50,5 @@ workflows:
     jobs:
       - build
       - package
+        requires:
+          - build

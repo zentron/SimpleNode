@@ -5,21 +5,19 @@ defaults: &defaults
 
 version: 2
 jobs:
-  flow:
-    <<: *defaults
+  build:
     docker:
       - image: circleci/node:7.10
     working_directory: ~/repo
     steps:
       - checkout
       - run: npm install
+      - run npm install --prune
       - persist_to_workspace:
           root: ./
           paths:
             - ./**
-
-  downstream:
-    <<: *defaults
+  push:
     docker:
       - image: octopusdeploy/octo:4.37.0-alpine
     working_directory: /tmp/workspace
@@ -33,10 +31,9 @@ jobs:
           path: /tmp/out
 workflows:
   version: 2
-
-  btd:
+  build_and_push:
     jobs:
-      - flow
-      - downstream:
+      - build
+      - push:
           requires:
-            - flow
+            - build

@@ -7,14 +7,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: mkdir ~/junit
-      - run:
-          command: node node_modules/mocha/bin/mocha test --reporter mocha-junit-reporter
-          environment:
-            MOCHA_FILE: ~/junit/test-results.xml
-          when: always
-      - store_test_results:
-          path: ~/junit
+      - run: npm test
       - run: npm prune --production         
       - persist_to_workspace:
           root: ./
@@ -27,7 +20,6 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/workspace
-      - run: mkdir /tmp/out
       - run: octo pack --id $CIRCLE_PROJECT_REPONAME --version 1.0.$CIRCLE_BUILD_NUM --outFolder /tmp/out --format zip 
       - run: octo push --package /tmp/out/$CIRCLE_PROJECT_REPONAME.1.0.$CIRCLE_BUILD_NUM.zip --server $OCTOPUS_SERVER --apiKey $OCTOPUS_APIKEY 
       - store_artifacts:

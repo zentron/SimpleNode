@@ -30,5 +30,8 @@ workflows:
     jobs:
       - build
       - push:
+        filters:
+          branches:
+            only: master
           requires:
             - build

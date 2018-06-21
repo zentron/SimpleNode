@@ -3,6 +3,7 @@ defaults: &defaults
   working_directory: /tmp
 jobs:
   build:
+    <<:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
@@ -15,6 +16,7 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      <<:
       - checkout
       # Download and cache dependencies
       - restore_cache:

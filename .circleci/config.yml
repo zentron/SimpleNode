@@ -26,7 +26,10 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/workspace
-      - run: octo pack --id $CIRCLE_PROJECT_REPONAME --version 1.0.$CIRCLE_BUILD_NUM --outFolder ./out --format zip 
+      - run: mkdir /tmp/out
+      - run: octo pack --id $CIRCLE_PROJECT_REPONAME --version 1.0.$CIRCLE_BUILD_NUM --outFolder /tmp/out --format zip 
+      - store_artifacts:
+          path: /tmp/out/$CIRCLE_PROJECT_REPONAME.1.0.$CIRCLE_BUILD_NUM.zip
 workflows:
   version: 2
 

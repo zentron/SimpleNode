@@ -28,6 +28,8 @@ jobs:
       - run: ls /
       - persist_to_workspace:
           root: ./
+          paths:
+            - ./**
       - save_cache:
           paths:
             - node_modules
@@ -36,6 +38,8 @@ jobs:
     docker:
       # specify the version you desire here
       - image: octopusdeploy/octo:4.37.0-alpine
+    requires:
+      - build
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory

@@ -28,11 +28,3 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-  package:
-    docker:
-      - image: octopusdeploy/octo:4.37.0-alpine
-     working_directory: ~/repo
-     steps:
-       - checkout
-       - run: ls ./
-       - run /

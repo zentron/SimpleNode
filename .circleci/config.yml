@@ -28,6 +28,7 @@ jobs:
           at: /tmp/workspace
       - run: mkdir /tmp/out
       - run: octo pack --id $CIRCLE_PROJECT_REPONAME --version 1.0.$CIRCLE_BUILD_NUM --outFolder /tmp/out --format zip 
+      - run: octo push --package /tmp/out/$CIRCLE_PROJECT_REPONAME.1.0.$CIRCLE_BUILD_NUM.zip --server $OCTOPUS_SERVER --apiKey $OCTOPUS_APIKEY 
       - store_artifacts:
           path: /tmp/out
 workflows:
